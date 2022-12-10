@@ -17,7 +17,7 @@ with open("day5_input.txt") as commands:
         command_list = line.split()
         
         for i in range(int(command_list[1])):
-            val_to_move = stack_dict[command_list[3]].pop(-1)
+            val_to_move = stack_dict[command_list[3]].pop()
             stack_dict[command_list[5]].append(val_to_move)
 
 final_word = ''
@@ -45,7 +45,7 @@ stack_dict = {
 with open("day5_input.txt") as commands:
     for line in commands:
         command_list = line.split()
-        
+
         list_to_move = []
         for i in range(int(command_list[1])):
             val_to_move = stack_dict[command_list[3]].pop()
