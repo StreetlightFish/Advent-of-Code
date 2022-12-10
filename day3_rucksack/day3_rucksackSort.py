@@ -12,13 +12,42 @@ priority_sum = 0
 
 with open('day3_rucksack.txt') as rucksack:
     for line in rucksack:
+        letter_list = []
         first_half = slice(0, len(line)//2)
         second_half = slice(len(line)//2, len(line))
         #print(line[first_half], line[second_half])
         for letterfh in line[first_half]:
             for lettersh in line[second_half]:
-                if letterfh == lettersh:
+                if letterfh == lettersh and letterfh not in letter_list:
                     #print(letterfh)
                     priority_sum += abc_dict[lettersh]
+                    letter_list.append(letterfh)
+                    # print(letterfh, priority_sum)
 
 print('The sum of item priority is:', priority_sum)
+
+with open('day3_rucksack.txt') as rucksack:
+    line1 = ''
+    line2 = ''
+    line3 = ''
+    #the_letter = ''
+    priority_sum = 0
+    counter = 0
+    for line in rucksack:
+        if counter % 3 == 0:
+            line1 = line.strip('\n')
+            counter += 1
+        elif counter % 3 == 1:
+            line2 = line.strip('\n')
+            counter += 1
+        elif counter % 3 == 2:
+            line3 = line.strip('\n')
+            letter_found = False
+            for letter1 in line1:
+                for letter2 in line2:
+                    for letter3 in line3:
+                        if letter1 == letter2 == letter3 and letter_found == False:
+                            priority_sum += abc_dict[letter1]
+                            letter_found = True
+            counter += 1
+    print('Three Elf Group Priority:', priority_sum)
