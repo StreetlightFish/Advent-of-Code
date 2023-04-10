@@ -1,3 +1,5 @@
+from tqdm import tqdm
+
 # Task 1 ---------------------------------------------------
 
 stack_dict = {
@@ -13,7 +15,7 @@ stack_dict = {
  }
 
 with open("day5_input.txt") as commands:
-    for line in commands:
+    for line in tqdm(commands):
         command_list = line.split()
         
         for i in range(int(command_list[1])):
@@ -43,7 +45,7 @@ stack_dict = {
  }
 
 with open("day5_input.txt") as commands:
-    for line in commands:
+    for line in tqdm(commands):
         command_list = line.split()
 
         list_to_move = []
