@@ -36,12 +36,9 @@ with open('input.txt') as input:
             if redMax < red or greenMax < green or blueMax < blue:
                 goodGame = False
             
-            if redMin < red:
-                redMin = red
-            if greenMin < green:
-                greenMin = green
-            if blueMin < blue:
-                blueMin = blue
+            if redMin < red:        redMin = red
+            if greenMin < green:    greenMin = green
+            if blueMin < blue:      blueMin = blue
         
         if goodGame:
             idSum += int(gameNumber[1])
