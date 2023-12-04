@@ -26,7 +26,7 @@ for line in partList:
         j = 0
 
         if skipDigit == 0 and character ==  numbers[numberIndex][0]:
-            print("Found one!")
+            print("Found a number! Number: " + str(numbers[numberIndex]))
             numberIndex += 1
             skipDigit = len(numbers[numberIndex]) - 1
             print("Number Length: " + str(skipDigit + 1))
