@@ -1,4 +1,5 @@
 import re
+import math
 sumParts = 0
 partList = []
 
@@ -17,21 +18,22 @@ for line in partList:
     
     # Find all the numbers in the current line in the order they appear
     numbers = re.findall(r'\d+',line)
-    print(numbers)
+    # print(numbers)
     numberIndex = 0
     skipDigit = 0
 
     # Search lines for digit for start/end of numbers
     for character in line:
         j = 0
-
-        if skipDigit == 0 and character ==  numbers[numberIndex][0]:
-            print("Found a number! Number: " + str(numbers[numberIndex]))
-            numberIndex += 1
-            skipDigit = len(numbers[numberIndex]) - 1
-            print("Number Length: " + str(skipDigit + 1))
-            print(character)
+        if skipDigit == 0 and character == numbers[numberIndex][0]:
+            # print("Found Number: " + str(numbers[numberIndex]))
+            skipDigit = int(math.log10(int(numbers[numberIndex])))+1
+            # print("Number Length: " + str(skipDigit))
+            skipDigit -= 1
+            # print(character)
+            if numberIndex < len(numbers) - 1:
+                numberIndex += 1
         elif skipDigit != 0:
-            print(character)
+            # print(character)
             skipDigit -= 1
             
