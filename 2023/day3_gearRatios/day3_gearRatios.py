@@ -34,25 +34,25 @@ for line in partList:
             # TODO: Insert loop to look for symbols at partList[i][j] +- 1 in all directions based on skipDigit
             # Define vertical bounds of symbol search to not exceed size of "partList"
             iLowerBound = 0 if (i - 1 < 0) else (i - 1)
-            iUpperBound = len(partList) if (i +1 > len(partList)) else (i + 1)
+            iUpperBound = len(partList) if (i + 2 > len(partList)) else (i + 2)
             
             # Define horizontal bounds of symbol search to not exceed size of "line"
-            jLowerBound = 0 if (j - 1 < 0) else (i - 1)
-            jUpperBound = len(line) if (i + 1 > len(line)) else (j + 1)
-            
+            jLowerBound = 0 if (j - 1 < 0) else (j - 1)
+            jUpperBound = len(line) if (j + 1 > len(line)) else (j + len(numbers[numberIndex]) + 1)
+            # print("Number: " + numbers[numberIndex])
+            # print(iLowerBound, iUpperBound, jLowerBound, jUpperBound)
+
             # Check for symbol matches within the bounds defined around the number
-            symbols = "!@#$%^&*()-+?_=,<>/"
+            symbols = "!@#$%^&*()-=_+[]\{\};:\'\"<,>/?\\|"
             match = False
-            for iIndex in range(iLowerBound, iUpperBound+1):
+            for iIndex in range(iLowerBound, iUpperBound):
                 if match is False:
-                    for jIndex in range(jLowerBound, jUpperBound+1):
-                        if (partList[iIndex][jIndex] in symbols):
-                            print("Match! Adding " + str(numbers[numberIndex]) + " to sumParts (" + str(sumParts) + ")")
+                    for jIndex in range(jLowerBound, jUpperBound):
+                        # print(iIndex, jIndex)
+                        if match is False and (partList[iIndex][jIndex] in symbols):
+                            print("Match! Found " + partList[iIndex][jIndex] + " symbol. Adding " + str(numbers[numberIndex]) + " to sumParts (" + str(sumParts) + ")")
                             match = True
                             sumParts += int(numbers[numberIndex])
-                            break
-                
-
 
             skipDigit -= 1
             if numberIndex < len(numbers) - 1:
