@@ -29,8 +29,11 @@ for line in partList:
             # print("Found Number: " + str(numbers[numberIndex]))
             skipDigit = int(math.log10(int(numbers[numberIndex])))+1
             # print("Number Length: " + str(skipDigit))
-            skipDigit -= 1
             # print(character)
+
+            # TODO: Insert loop to look for symbols at partList[i][j] +- 1 in all directions based on skipDigit
+
+            skipDigit -= 1
             if numberIndex < len(numbers) - 1:
                 numberIndex += 1
         elif skipDigit != 0:
