@@ -1,6 +1,7 @@
 import re
 import math
 sumParts = 0
+sumGearRatio = 0
 partList = []
 
 ## Index every character with a list from input.txt
@@ -19,6 +20,12 @@ for line in partList:
     
     # Find all the numbers in the current line in the order they appear
     numbers = re.findall(r'\d+',line)
+    # gears  = re.findall(r'\d+\*\d+',line)
+    # for gear in gears:
+    #     ratio = math.prod(map(int, re.findall(r'[+-]?\d+', gear)))
+    #     print("Found a gear! Gear ratio: " + gear + ". Adding " + str(ratio) + " to sumGearRatio (" + str(sumGearRatio) + ")")
+    #     sumGearRatio += ratio
+
     # print(numbers)
     numberIndex = 0
     skipDigit = 0
@@ -50,7 +57,7 @@ for line in partList:
                     for jIndex in range(jLowerBound, jUpperBound):
                         # print(iIndex, jIndex)
                         if match is False and (partList[iIndex][jIndex] in symbols):
-                            print("Match! Found " + partList[iIndex][jIndex] + " symbol. Adding " + str(numbers[numberIndex]) + " to sumParts (" + str(sumParts) + ")")
+                            print(f"Match! Found {partList[iIndex][jIndex]} symbol. Adding {numbers[numberIndex]} to sumParts ({sumParts})")
                             match = True
                             sumParts += int(numbers[numberIndex])
 
@@ -64,4 +71,5 @@ for line in partList:
         j += 1
     i += 1
 
-print("Parts Sum = " + str(sumParts))
+print(f"SOLUTION! Parts Sum: {sumParts}")
+print(f"SOLUTION! Gear Ratio Sum: {sumGearRatio}")
