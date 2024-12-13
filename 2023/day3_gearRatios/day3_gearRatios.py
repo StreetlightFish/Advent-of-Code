@@ -20,11 +20,6 @@ for line in partList:
     
     # Find all the numbers in the current line in the order they appear
     numbers = re.findall(r'\d+',line)
-    # gears  = re.findall(r'\d+\*\d+',line)
-    # for gear in gears:
-    #     ratio = math.prod(map(int, re.findall(r'[+-]?\d+', gear)))
-    #     print("Found a gear! Gear ratio: " + gear + ". Adding " + str(ratio) + " to sumGearRatio (" + str(sumGearRatio) + ")")
-    #     sumGearRatio += ratio
 
     # print(numbers)
     numberIndex = 0
@@ -60,6 +55,30 @@ for line in partList:
                             print(f"Match! Found {partList[iIndex][jIndex]} symbol. Adding {numbers[numberIndex]} to sumParts ({sumParts})")
                             match = True
                             sumParts += int(numbers[numberIndex])
+            
+            # Part two: check for gears
+            symbols = "*"
+            match = False
+            for iIndex in range(iLowerBound, iUpperBound):
+                if match is False:
+                    for jIndex in range(jLowerBound, jUpperBound):
+                        if match is False and (partList[iIndex][jIndex] in symbols):
+                            # print("Found a potential gear!")
+                            iStarLowerBound = iIndex
+                            iStarUpperBound = len(partList) if (iIndex + 2 > len(partList)) else (iIndex + 2)
+                            
+                            jStarLowerBound = 0 if (jIndex - 1 < 0) else (jIndex - 1)
+                            jStarUpperBound = len(line) if (j + 2 > len(line)) else (j + 2)
+                            numMatch = False
+                            print(iIndex, jIndex)
+                            print(iStarLowerBound, iStarUpperBound, jStarLowerBound, jStarUpperBound)
+                            for iStarIndex in range(iStarLowerBound, iStarUpperBound):
+                                if numMatch is False:
+                                    for jStarIndex in range(jStarLowerBound, jStarUpperBound):
+                                        if numMatch is False and re.match(r'\d',partList[iStarIndex][jStarIndex]):
+                                            print("Found a gear!")
+                                            numMatch = True
+                                jStarLowerBound -= 1
 
             skipDigit -= 1
             if numberIndex < len(numbers) - 1:
